@@ -1,5 +1,17 @@
 package ru.akanshin.blackjack.model.player;
 
-public class Human extends Player {
+import ru.akanshin.blackjack.model.card.Card;
 
+public class Human extends Player {
+	public Human() {
+		super();
+	}
+	
+	@Override
+	public void put(Card card) {
+		if (card != null) {
+			card.faceup();
+			pack.put(card);
+		}
+	}
 }

@@ -36,22 +36,52 @@ public class Card {
 		faceup = !faceup;
 	}
 	
-	public String toString() {
-		String result = names[rank] + "_";
-		switch (suit) {
-		case heart:
-			result += "\u2665";
-			break;
-		case spade:
-			result += "\u2660";
-			break;
-		case diamond:
-			result += "\u2666";
-			break;
-		case club:
-			result += "\u2663";
-			break;
-		}
-		return result;
+	public void faceup() {
+		faceup = true;
 	}
+	
+	public void facedown() {
+		faceup = false;
+	}
+	
+	@Override
+	public String toString() {
+		if (this.isFaceup()) {
+			String result = names[rank];
+			switch (suit) {
+			case heart:
+				result += "\u2665";
+				break;
+			case spade:
+				result += "\u2660";
+				break;
+			case diamond:
+				result += "\u2666";
+				break;
+			case club:
+				result += "\u2663";
+				break;
+			}
+			return result;
+		} else {
+			return "XX";
+		}
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Card other = (Card) obj;
+		if (rank != other.rank)
+			return false;
+		if (suit != other.suit)
+			return false;
+		return true;
+	}
+	
 }
