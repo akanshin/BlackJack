@@ -3,7 +3,6 @@ package ru.akanshin.blackjack.model;
 import java.util.ArrayList;
 
 import ru.akanshin.blackjack.model.card.Pack;
-import ru.akanshin.blackjack.model.player.Bot;
 import ru.akanshin.blackjack.model.player.*;
 
 public class Game {
@@ -43,5 +42,19 @@ public class Game {
 
 	public void setBots(int bots) {
 		this.bots = bots;
+	}
+	
+	@Override
+	public String toString() {
+		String result = human.toString() + "\n";
+		for (Player p : botList) {
+			result += p.toString() + "\n";
+		}
+		result += dealer.toString() + "\n";
+		return result;
+	}
+	
+	public void game() {
+		
 	}
 }

@@ -98,4 +98,8 @@ public class Pack {
 	public int size() {
 		return list.size();
 	}
+	
+	public void clear() {
+		list.clear();
+	}
 }
