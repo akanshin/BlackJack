@@ -7,15 +7,16 @@ public class Dealer extends Player {
 	
 	public Dealer() {
 		super("Dealer");
+		money = 1000.0;
 	}
 	
 	@Override
 	public void put(Card card) {
 		if (card != null) {
 			if (pack.size() > 0) {
-				card.facedown();
-			} else {
 				card.faceup();
+			} else {
+				card.facedown();
 			}
 			pack.put(card);
 		}
@@ -31,16 +32,28 @@ public class Dealer extends Player {
 	
 	public void open() {
 		opened = true;
-		
 		pack.flipAll(true);
+	}
+	@Override
+	public void clear() {
+		super.clear();
+		opened = false;
 	}
 
 	@Override
 	public String toString() {
 		String result = this.getName() + ") " + pack.toString();
-		if (opened) {
-			result += "\t score = " + pack.getScore();
+		if (isBlackjack()) {
+			result += " BLACKJACK!";
 		}
+		
+		result += "\n score=";
+		if (opened) {
+			result += pack.getScore();
+		} else {
+			result += "??";
+		}
+		result += "\tmoney=" + money;
 		return result;
 	}
 }

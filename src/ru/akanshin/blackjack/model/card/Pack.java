@@ -102,4 +102,16 @@ public class Pack {
 	public void clear() {
 		list.clear();
 	}
+	
+	public boolean isBlackjack() {
+		boolean blackjack = false;
+		if (list.size() == 2) {
+			int r1 = list.get(0).getRank();
+			int r2 = list.get(1).getRank();
+			if ((r1 == 0 || r2 == 0) && (r1 >= 10 || r2 >= 10)) {
+				blackjack = true;
+			}
+		}
+		return blackjack;
+	}
 }

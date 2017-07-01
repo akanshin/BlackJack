@@ -7,6 +7,21 @@ public abstract class Player {
 	
 	private String name;
 	
+	protected double money = 100.0;
+	
+	public double getMoney() {
+		return money;
+	}
+	
+	public double getBet(double bet) {
+		money -= bet;
+		return bet;
+	}
+	
+	public void putMoney(double prize) {
+		money += prize;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -38,11 +53,23 @@ public abstract class Player {
 	public void clear() {
 		pack.clear();
 	}
+	
+	public int getScore() {
+		return pack.getScore();
+	}
 
 	@Override
 	public String toString() {
-		return name + ") " + pack.toString() + "\t score = " + pack.getScore();
+		String result = name + ") " + pack.toString();
+		if (isBlackjack()) {
+			result += " BLACKJACK!";
+		}
+		result += "\n  score=" + pack.getScore() + "\tmoney=" + money;
+		return result;
 	}
 	
+	public boolean isBlackjack() {
+		return pack.isBlackjack();
+	}
 	
 }
